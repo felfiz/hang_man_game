@@ -1,3 +1,4 @@
+import os
 import random
 
 words = [
@@ -10,6 +11,23 @@ words = [
   'mexico'
 ]
 
+def clear():
+  if os.name == 'nt':
+    os.system('cls')
+  else:
+    os.system('clear')
+
+def draw():
+  for letter in secret_word:
+    if letter in good_guesses:
+      print(letter, end='')
+    else:
+      print('_', end='')
+
+  print('')
+  print('Strikes: {}/7'.format(len(bad_guesses)))
+  print('')
+
 while True:
   start = input('Press enter/return to start, or enter Q to quit: ')
   if start.lower() == 'q':
@@ -21,17 +39,7 @@ while True:
     good_guesses = []
 
     while len(bad_guesses) < 5 and len(good_guesses) != len(list(secret_word)):
-      for letter in secret_word:
-        if letter in good_guesses:
-          print(letter, end='')
-          # good_guesses.append(letter)
-        else:
-          print('_', end='')
-          # bad_guesses.append(letter)
-
-      print('')
-      print('Strikes: {}/7'.format(len(bad_guesses)))
-      print('')
+      draw()
 
       guess = input('Choose a letter: ').lower()
 
