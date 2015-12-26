@@ -86,7 +86,7 @@ def welcome():
   print('Welcome to Hang Man')
   start = input("Press enter/return to start or Q to quit: ")
 
-  if start.lower != 'q':
+  if start.lower() != 'q':
     return True
   else:
     print('Bye')
